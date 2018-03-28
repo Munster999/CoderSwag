@@ -4,21 +4,21 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.munster.coderswag.R
+import com.munster.coderswag.adapters.CategoryAdapter
 import com.munster.coderswag.model.Category
 import com.munster.coderswag.services.DataService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter : ArrayAdapter<Category> // Initialise the adapter
+    lateinit var adapter : CategoryAdapter // Initialise the adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = ArrayAdapter( this, // context
-                                android.R.layout.simple_list_item_1, // type of view
-                                DataService.categories) // data that will be required to be adapted
+        adapter = CategoryAdapter(this, // context
+                                  DataService.categories) // data that will be required to be adapted
         categoryListview.adapter = adapter // Now we need to tell the listview WHO it needs to listen to
     }
 }
