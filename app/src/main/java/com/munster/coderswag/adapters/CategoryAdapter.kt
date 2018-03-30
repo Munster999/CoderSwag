@@ -11,12 +11,8 @@ import com.munster.coderswag.R
 import com.munster.coderswag.model.Category
 import kotlinx.android.synthetic.main.category_list_item.*
 
-// BaseAdapter() is the adapter that other adapters inherit from. CategoryAdapter requires the 2 params below:
 class CategoryAdapter(val context: Context, val categories: List<Category>) : BaseAdapter() {
 
-    //val context = context
-    //val categories = categories
-    // An 'adapter' that inherits from 'BaseAdapter' requires the 4 methods below (plus Viewholder)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val categoryView: View // initialise our 'View' type param
@@ -63,21 +59,6 @@ class CategoryAdapter(val context: Context, val categories: List<Category>) : Ba
 }
 
 /*
-- 'BaseAdapter' - This is the 'adapter' that other adapters INHERIT from. Hence, an 'ArrayAdapter' will inherit from a 'BaseAdapter'
-- So when we extend from the BaseAdapter we have some methods that we need to implement:
-    - getView() - Get a View that displays the data at the specified position in the data set.
-    - getItem() - Get the data item associated with the specified position in the data set.
-    - getItemId() - Get the row id associated with the specified position in the list.
-    - getCount() - How many items are in the data set represented by this Adapter.
-- CategoryAdapter() requires the same params as an ArrayAdapter, hence:
-    - context
-    - resource (i.e. the datasource involved - i.e. the list of category items - categories: List<Category>)
-- GetView() method
-    - Input params = position, convertView, parent
-    - Return param = View
-    - Next we initialise [ categoryView ]
-    - LayoutInflater() - Instantiates a layout XML file into its corresponding View objects. (i.e. Converts XML objects into View objects)
-    - So, now we inflate a view called 'categoryView' FROM the xml file 'category_list_item.xml'
 
 
 */

@@ -3,7 +3,9 @@ package com.munster.coderswag.controller
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.munster.coderswag.R
+//import com.munster.coderswag.R.id.categoryListview
 import com.munster.coderswag.adapters.CategoryAdapter
 import com.munster.coderswag.model.Category
 import com.munster.coderswag.services.DataService
@@ -19,28 +21,19 @@ class MainActivity : AppCompatActivity() {
 
         adapter = CategoryAdapter(this, // context
                                   DataService.categories) // data that will be required to be adapted
-        categoryListview.adapter = adapter // Now we need to tell the listview WHO it needs to listen to
+        categoryListView.adapter = adapter // Now we need to tell the listview WHO it needs to listen to
+
+        categoryListView.setOnItemClickListener { adapterView, view, position, id ->
+            val category = DataService.categories[position]
+            Toast.makeText(this, "You clicked on the ${category.title} cell", Toast.LENGTH_SHORT).show()
+        } // NOTE: THIS WILL NOT WORK WITH RECYCLERVIEW !!!!
     }
 }
 
 /*
-LISTVIEW
----------
 
-- We have a listview, we have data so now we need a way for the data to be inserted into the listview
-- To do this we need certain components:
+RECYCLERVIEW
+------------
 
-        DATASOURCE      ----->  ADAPTER         ---->   LISTVIEW
-        (Data Model)            (Interface)             (ListView)
 
-    - An adapter (The 'interface' or 'go-between' the data and the listview)
-    - This takes the data from the datasource, converts the data, formats it and outputs it into the listview component.
-
-- So in order to create an 'ArrayAdapter' we need to do the following things:
-    1 - Initialise the adapter
-    2 - Pass the following params into the adapter:
-        1 - Context
-        2 - The type of view that the 'listview' requires (android.R.layout.simple_list_item_1)
-        3 - the data that will be required to be adapted. (Dataservice.categories)
-    3 - Now we need to tell the listview WHO it needs to listen to (.adapter)
 */
