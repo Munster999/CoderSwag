@@ -2,38 +2,26 @@ package com.munster.coderswag.controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.support.v7.widget.LinearLayoutManager
 import com.munster.coderswag.R
-//import com.munster.coderswag.R.id.categoryListview
-import com.munster.coderswag.adapters.CategoryAdapter
-import com.munster.coderswag.model.Category
+import com.munster.coderswag.adapters.CategoryRecyclerAdapter
 import com.munster.coderswag.services.DataService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter : CategoryAdapter // Initialise the adapter
+    lateinit var adapter : CategoryRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = CategoryAdapter(this, // context
-                                  DataService.categories) // data that will be required to be adapted
-        categoryListView.adapter = adapter // Now we need to tell the listview WHO it needs to listen to
+        adapter = CategoryRecyclerAdapter(this, DataService.categories)
+        categoryListView.adapter = adapter
 
-        categoryListView.setOnItemClickListener { adapterView, view, position, id ->
-            val category = DataService.categories[position]
-            Toast.makeText(this, "You clicked on the ${category.title} cell", Toast.LENGTH_SHORT).show()
-        } // NOTE: THIS WILL NOT WORK WITH RECYCLERVIEW !!!!
+        val layoutManager = LinearLayoutManager(this)
+        categoryListView.layoutManager = layoutManager
+        categoryListView.setHasFixedSize(true) // used for optimisation
     }
 }
 
-/*
-
-RECYCLERVIEW
-------------
-
-
-*/
