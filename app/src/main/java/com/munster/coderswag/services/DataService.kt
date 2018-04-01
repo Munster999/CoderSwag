@@ -42,6 +42,16 @@ object DataService {
             Product("Devslopes Kickflip Studios", "$18", "shirt5")
     )
 
+    val digitalGood = listOf<Product>() // needed to add in an array for DigitalGoods as well (empty array)
+
+    fun getProducts(category: String) : List<Product> {
+        return when (category) { // 'return' keyword is placed here to save you from using it after every return statement
+            "SHIRTS" -> shirts
+            "HATS" -> hats
+            "HOODIES" -> hoodies
+            else -> digitalGood
+        } // Returns correct product list based upon the string that is passed into it
+    }
 }
 
 /*
