@@ -2,16 +2,14 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.munster.coderswag.controller.MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/categoriesTextview"
+        android:id="@+id/productsTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Categories"
+        android:text="@string/products"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.022"
@@ -21,7 +19,7 @@
         app:layout_constraintVertical_bias="0.032" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/categoryListView"
+        android:id="@+id/productListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -29,6 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriesTextview" /> <!-- 'divider' removes dividing line in listview layout-->
+        app:layout_constraintTop_toBottomOf="@+id/productsTextview" />
 
 </android.support.constraint.ConstraintLayout>

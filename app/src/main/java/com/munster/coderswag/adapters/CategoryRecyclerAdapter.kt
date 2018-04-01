@@ -10,23 +10,27 @@ import android.widget.TextView
 import com.munster.coderswag.R
 import com.munster.coderswag.model.Category
 
-class CategoryRecyclerAdapter(val context: Context, val categories: List<Category>) : RecyclerView.Adapter<CategoryRecyclerAdapter.Holder>() {
+class CategoryRecyclerAdapter(val context: Context,
+                              val categories: List<Category>,
+                              val itemClick: (Category) -> Unit) // New 'Lambda expression' param for itemClick
+        : RecyclerView.Adapter<CategoryRecyclerAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.category_list_item, parent, false)
-        return Holder(view)
-    } // Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
+        return Holder(view, itemClick)
+    }
 
     override fun getItemCount(): Int {
         return categories.count()
-    } // Returns the total number of items in the data set held by the adapter.
+    }
 
     override fun onBindViewHolder(holder: Holder?, position: Int) {
         holder?.bindCategory(categories[position], context)
-    } // Called by RecyclerView to display the data at the specified position. This method should update the contents of
-      // the itemView to reflect the item at the given position.
+    }
 
-    inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    inner class Holder(itemView: View?,
+                       val itemClick: (Category) -> Unit) // New 'itemClick' param
+                : RecyclerView.ViewHolder(itemView) {
         val categoryImage = itemView?.findViewById<ImageView>(R.id.categoryImage)
         val categoryName = itemView?.findViewById<TextView>(R.id.categoryName)
 
@@ -34,8 +38,8 @@ class CategoryRecyclerAdapter(val context: Context, val categories: List<Categor
             val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
             categoryImage?.setImageResource(resourceId)
             categoryName?.text = category.title
+            itemView.setOnClickListener { itemClick(category) } // setting the onClickListener from the 'itemView' param
+            // situated in the parent 'Holder' class above.
         }
-    } // A ViewHolder describes an item view and metadata about its place within the RecyclerView.
-
-
+    }
 }
