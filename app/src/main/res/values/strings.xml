@@ -4,4 +4,5 @@
     <string name="hats">Hats</string>
     <string name="category_image">Category Image</string>
     <string name="products">Products</string>
+    <string name="productImage">Product Image</string>
 </resources>
